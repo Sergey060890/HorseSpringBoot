@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Информация</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <div th:each="el : ${horses}" class="alert alert-info mt-2">
+        ВИД: <h3 th:text="${el.type}"/>
+        ВОЗРАСТ: <p th:text="${el.age}"/>
+        ЦЕНА: <p th:text="${el.price}"/>
+        <a th:href="'/horse/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
+
+        <form th:action="'/horse/'+${el.id}+ '/remove' " method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button><br><br>
+        </form>
+
+        <a th:href="'/horse/'" class="btn btn-warning">Назад</a><br><br>
+    </div>
+</div>
+
+<!--<div th:insert="blocks/footer :: footer"></div>-->
+</body>
+</html>
