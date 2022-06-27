@@ -13,10 +13,10 @@
         ВИД: <h3 th:text="${el.type}"/>
         ВОЗРАСТ: <p th:text="${el.age}"/>
         ЦЕНА: <p th:text="${el.price}"/>
-        <a th:href="'/horse/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
+        <a th:href="'/horse/' + ${el.id} + '/edit'" class="btn btn-primary">Редактировать</a><br><br>
 
         <form th:action="'/horse/'+${el.id}+ '/remove' " method="post">
-            <button class="btn btn-warning" type="submit">Удалить</button><br><br>
+            <button class="btn btn-danger" type="submit">Удалить</button><br><br>
         </form>
 
         <a th:href="'/horse/'" class="btn btn-warning">Назад</a><br><br>

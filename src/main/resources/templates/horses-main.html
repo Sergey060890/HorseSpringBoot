@@ -9,13 +9,13 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-    <h1>Список лошадей</h1>
+    <center><h1>Список лошадей</h1></center>
     <a href="/horse/add" class="btn btn-success">Добавить лошадь</a><br><br>
     <div th:each="el : ${horses}" class="alert alert-info mt-2">
         ВИД: <h3 th:text="${el.type}"/>
         ВОЗРАСТ: <p th:text="${el.age}"/>
         ЦЕНА: <p th:text="${el.price}"/>
-        <a th:href="'/horse/' + ${el.id}" class="btn btn-warning">Подробнее</a>
+        <a th:href="'/horse/' + ${el.id}" class="btn btn-info">Подробнее</a>
     </div>
 </div>
 

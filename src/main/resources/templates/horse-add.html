@@ -9,18 +9,72 @@
 
 <header th:insert="blocks/header :: header"></header>
 
+<!--<div class="container mt-5 mb-5">-->
+<!--    <h1>Добавить лошадь</h1>-->
+<!--    <form action="/horse/add" method="post">-->
+<!--        <input type="text" name="type" placeholder="Введите вид лошади" class="form-control"><br>-->
+<!--        <input type="text" name="age" placeholder="Введите возраст лошади" class="form-control"><br>-->
+<!--        <input type="text" name="price" placeholder="Введите цену лошади" class="form-control"><br>-->
+<!--        <button type="submit" class="btn btn-success">Добавить</button><br><br>-->
+<!--        <a th:href="'/horse/'" class="btn btn-warning">Назад</a><br><br>-->
+<!--    </form>-->
+<!--</div>-->
+
+
 <div class="container mt-5 mb-5">
-    <h1>Добавить лошадь</h1>
-    <form action="/horse/add" method="post">
-        <input type="text" name="type" placeholder="Введите вид лошади" class="form-control"><br>
-        <input type="text" name="age" placeholder="Введите возраст лошади" class="form-control"><br>
-        <input type="text" name="price" placeholder="Введите цену лошади" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Добавить</button><br><br>
-        <a th:href="'/horse/'" class="btn btn-warning">Назад</a><br><br>
-    </form>
+    <div class="content">
+
+        <div class="right-side">
+            <h2>Добавление лошади</h2>
+            <form action="/horse/add" method="post" name="form">
+                <div class="input-box">
+<!--                    <label for="name">Только латинские или кириллические буквы</label>-->
+                    <input
+                            type="text"
+                            placeholder="Введите тип"
+                            name="type"
+                            id="name"
+                            data-reg="^([^0-9][А-яё]+|[^0-9][A-z]+)$"
+                            class="form-control"
+
+                    />
+
+                </div><br>
+                <div class="input-box">
+<!--                    <label for="name">Только цифры</label>-->
+                    <input
+                            type="text"
+                            placeholder="Введите возраст"
+                            name="age"
+                            data-reg="^([\d]{1,2})$"
+                            class="form-control"
+                    />
+                </div><br>
+                <div class="input-box">
+<!--                    <label for="name">Только цифры</label>-->
+                    <input
+                            type="text"
+                            placeholder="Введите цену"
+                            name="price"
+                            data-reg="^([\d]{1,10})$"
+                            class="form-control"
+                    />
+                </div><br>
+                <div class="button">
+                    <input class="btn btn-success" type="submit" id="button" value="Отправить" /><br><br>
+                    <a th:href="'/horse/'" class="btn btn-warning">Назад</a><br><br>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+<script
+        src="https://kit.fontawesome.com/fce9a50d02.js"
+        crossorigin="anonymous"
+></script>
+
 
 <!--<div th:insert="blocks/footer :: footer"></div>-->
-
+<script src="../static/js/style.js"></script>
 </body>
 </html>

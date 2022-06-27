@@ -15,57 +15,74 @@ import java.util.ArrayList;
 
 @Controller
 public class HorseController {
+    public static final String STRING = "/";
+    public static final String TITLE = "title";
+    public static final String ГЛАВНАЯ_СТРАНИЦА = "Главная страница";
+    public static final String HOME = "home";
+    public static final String HORSE = "/horse";
+    public static final String HORSES = "horses";
+    public static final String HORSES_MAIN = "horses-main";
+    public static final String HORSE_ADD = "/horse/add";
+    public static final String HORSE_ADD1 = "horse-add";
+    public static final String STRING1 = "redirect:/horse";
+    public static final String HORSE_ID = "/horse/{id}";
+    public static final String ID = "id";
+    public static final String HORSE_DETAILS = "horse-details";
+    public static final String HORSE_ID_EDIT = "/horse/{id}/edit";
+    public static final String HORSE_EDIT = "horse-edit";
+    public static final String REDIRECT_HORSE = "redirect:/horse";
+    public static final String HORSE_ID_REMOVE = "/horse/{id}/remove";
     @Autowired
     private HorseService horseService;
 
-    @GetMapping("/")//главная страница
+    @GetMapping(STRING)//главная страница
     public String home(Model model) {
-        model.addAttribute("title", "Главная страница");
-        return "home";
+        model.addAttribute(TITLE, ГЛАВНАЯ_СТРАНИЦА);
+        return HOME;
     }
 
-    @RequestMapping("/horse")//все записи
+    @RequestMapping(HORSE)//все записи
     public String horsesMain(Model model) {
-        model.addAttribute("horses", horseService.findAll());
-        return "horses-main";
+        model.addAttribute(HORSES, horseService.findAll());
+        return HORSES_MAIN;
     }
 
-    @RequestMapping("/horse/add")//добавление
+    @RequestMapping(HORSE_ADD)//добавление
     public String blogAdd(Model model) {
-        return "horse-add";
+        return HORSE_ADD1;
     }
 
-    @PostMapping("/horse/add")//добавление (получение из формы)
+    @PostMapping(HORSE_ADD)//добавление (получение из формы)
     public String blogPostAdd(@RequestParam String type, @RequestParam String age, @RequestParam String price, Model model) {
         horseService.createHorse(type, Integer.parseInt(age), Integer.parseInt(price));
-        return "redirect:/horse";
+        return STRING1;
     }
 
-    @GetMapping("/horse/{id}")//вывод одной записи
-    public String blogDetails(@PathVariable(value = "id") Integer id, Model model) {
+    @GetMapping(HORSE_ID)//вывод одной записи
+    public String blogDetails(@PathVariable(value = ID) Integer id, Model model) {
         ArrayList<Horse> res = new ArrayList<>();
         horseService.findHorseById(id).ifPresent(res::add);//из класса Optional переводим в класс ArrayList
-        model.addAttribute("horses", res);
-        return "horse-details";
+        model.addAttribute(HORSES, res);
+        return HORSE_DETAILS;
     }
 
-    @GetMapping("/horse/{id}/edit")//edit
-    public String blogEdit(@PathVariable(value = "id") Integer id, Model model) {
+    @GetMapping(HORSE_ID_EDIT)//edit
+    public String blogEdit(@PathVariable(value = ID) Integer id, Model model) {
         ArrayList<Horse> res = new ArrayList<>();
         horseService.findHorseById(id).ifPresent(res::add);//из класса Optional переводим в класс ArrayList
-        model.addAttribute("horses", res);
-        return "horse-edit";
+        model.addAttribute(HORSES, res);
+        return HORSE_EDIT;
     }
 
-    @PostMapping("/horse/{id}/edit")//edit (получение из формы)
-    public String blogPostUpdate(@PathVariable(value = "id") Integer id, @RequestParam String type, @RequestParam String age, @RequestParam String price, Model model) {
+    @PostMapping(HORSE_ID_EDIT)//edit (получение из формы)
+    public String blogPostUpdate(@PathVariable(value = ID) Integer id, @RequestParam String type, @RequestParam String age, @RequestParam String price, Model model) {
         horseService.updateHorse(id, type, Integer.parseInt(age), Integer.parseInt(price));
-        return "redirect:/horse";
+        return REDIRECT_HORSE;
     }
 
-    @PostMapping("/horse/{id}/remove")//delete
-    public String blogPostDelete(@PathVariable(value = "id") Integer id, Model model) {
+    @PostMapping(HORSE_ID_REMOVE)//delete
+    public String blogPostDelete(@PathVariable(value = ID) Integer id, Model model) {
         horseService.deleteHorse(id);
-        return "redirect:/horse";
+        return REDIRECT_HORSE;
     }
 }
